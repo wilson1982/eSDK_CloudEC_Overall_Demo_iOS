@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-//#import "IMContactViewController.h"
 #import <TUPIOSSDK/TUPIOSSDK.h>
 #import "ManagerService.h"
 #import "UIViewController+CurrentViewController.h"

@@ -19,7 +19,6 @@
 #import "CallView.h"
 #import "CommonUtils.h"
 #import "CallTakingViewController.h"
-#import "AppDelegate.h"
 
 @interface CallWindowController ()<CallServiceDelegate,CallViewDelegate,DialSecondPlateDelegate,CallEndViewDelegate>
 @property (nonatomic, strong)UIWindow *callWindow;
@@ -103,6 +102,17 @@ static CallWindowController *g_windowCtrl = nil;
                                                  name:ESPACE_DEVICE_ORIENTATION_CHANGED
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealBfcpView) name:@"TupBfcpDealMessage" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeCallViewNotify) name:TUP_CALL_REMOVE_CALL_VIEW_NOTIFY object:nil];
+    
+}
+
+-(void)removeCallViewNotify
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self removeCallView:_currentTupCallInfo.stateInfo.callId];
+        [self.callWindow setHidden:YES];
+    });
 }
 
 -(void)networkStatusChangeNotify:(NSNotification *)notify

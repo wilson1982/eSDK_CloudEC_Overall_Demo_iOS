@@ -7,8 +7,6 @@
 //
 
 #import "AddressSearchResultController.h"
-
-#import "ContactListCell.h"
 #import "ContactInfo.h"
 
 @interface AddressSearchResultController ()

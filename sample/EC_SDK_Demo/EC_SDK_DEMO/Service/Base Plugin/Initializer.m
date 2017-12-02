@@ -348,6 +348,10 @@ TUP_VOID onTUPContactNotifications(TUP_UINT32 msgid,TUP_VOID *data) {
     ars.bArsCtrlFrameRate = 1;
     ars.bArsCtrlFrameSize = 1;
     TUP_RESULT ret_ars = tup_call_set_cfg(CALL_D_CFG_VIDEO_ARS, &ars);
+    
+    TUP_BOOL force_single_pt = TUP_TRUE;
+    TUP_RESULT ret_pt = tup_call_set_cfg(CALL_D_CFG_VIDEO_H264_FORCE_SINGLE_PT, &force_single_pt);
+   
 }
 
 /**

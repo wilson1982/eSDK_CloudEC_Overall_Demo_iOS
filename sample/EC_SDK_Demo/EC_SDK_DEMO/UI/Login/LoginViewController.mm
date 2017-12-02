@@ -117,7 +117,6 @@ NSString *const USER_SIP_SERVER_PORT        = @"USER_SIP_SERVER_PORT";
             ViewController *baseViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"ViewController"];
             [UIApplication sharedApplication].delegate.window.rootViewController = baseViewController;
             //[self setCancelIPTService];
-            [self configContactParams];
             [self configConferenceService];
         });
     }];
@@ -129,13 +128,6 @@ NSString *const USER_SIP_SERVER_PORT        = @"USER_SIP_SERVER_PORT";
     [[ManagerService confService] configConferenceCtrlWithServerAddress:loginInfo.regServerAddress port:[loginInfo.regServerPort intValue] token:[[ManagerService loginService] obtainToken]];
 }
 
--(void)configContactParams
-{
-//    TODO: CHENZHIQIAN
-//    TUPLoginAccessServerInfo *serverInfo = [[ManagerService loginService] obtainAccessServerInfo];
-//    NSString *token = [[ManagerService loginService] obtainToken];
-//    [[ManagerService contactService] configUportalInfo:serverInfo token:token];
-}
 -(void)setCancelIPTService
 {
     [[ManagerService callService] configDNDITPServerWithActiveCode:@"*56*" deactiveCode:@"#56#"];

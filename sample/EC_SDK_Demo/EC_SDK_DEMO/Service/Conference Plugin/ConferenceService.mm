@@ -594,6 +594,7 @@
         }
     }];
     BOOL isSelfLeaveConf = YES;
+    BOOL isNeedRemoveCallView = NO;
     // new attendee
     for (int i = 0; i<confStatusStruct->num_of_participant; i++)
     {
@@ -630,6 +631,10 @@
             DDLogInfo(@"isSelfLeaveConf,participant.state:%d,participant.number:%d",participant.state,participant.number);
             if (participant.state != ATTENDEE_STATUS_NO_EXIST && participant.state != ATTENDEE_STATUS_LEAVED) {
                 isSelfLeaveConf = NO;
+                if (participant.state == ATTENDEE_STATUS_IN_CONF) {
+                    // 如果自己已经在会议中，且呼叫界面还在，则移除呼叫界面（规避拨号入会，呼叫界面未移除问题场景）
+                    isNeedRemoveCallView = YES;
+                }
             }
         }
     }
@@ -642,7 +647,7 @@
     // go conference
     DDLogInfo(@"goConferenceRunView,confStatusStruct->conf_state :%d, isSelfLeaveConf:%d", confStatusStruct->conf_state, isSelfLeaveConf);
     if (!isSelfLeaveConf && confStatus.conf_state == CONF_STATE_GOING) {
-        [self goConferenceRunView:confStatus];
+        [self goConferenceRunView:confStatus needRemoveCallView:isNeedRemoveCallView];
     }
 }
 
@@ -787,9 +792,12 @@
  *This method is used to switch to the conf running page
  *切换到正在召开的会议页面
  */
--(void)goConferenceRunView:(ConfStatus *)confStatus
+-(void)goConferenceRunView:(ConfStatus *)confStatus needRemoveCallView:(BOOL)needRemoveCallWindow
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (needRemoveCallWindow) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TUP_CALL_REMOVE_CALL_VIEW_NOTIFY object:nil];
+        }
         [AppDelegate goConference:confStatus];
     });
 }

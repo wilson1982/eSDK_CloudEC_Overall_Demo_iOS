@@ -1885,7 +1885,7 @@ NSString *const NTF_AUDIOROUTE_CHANGED = @"NTF_AUDIOROUTE_CHANGED";
 - (NSString *)callHistoryDBPath
 {
     NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *plistName = [NSString stringWithFormat:@"%@_allHistory.plist",[ECSAppConfig sharedInstance].latestAccount];
+    NSString *plistName = [NSString stringWithFormat:@"%@_allHistory.plist",[ManagerService callService].sipAccount];
     NSString *filePath = [logPath stringByAppendingPathComponent:plistName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         if ([[NSFileManager defaultManager] createFileAtPath:filePath

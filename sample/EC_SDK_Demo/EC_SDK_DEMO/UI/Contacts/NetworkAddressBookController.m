@@ -106,13 +106,12 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DeptListCell" bundle:nil] forCellReuseIdentifier:@"DeptListCell"];
+    self.tableView.tableFooterView = [[UIView alloc] init];
     
     DeptInfo *firstDept = [[DeptInfo alloc] init];
     firstDept.deptId = @"1";
     firstDept.deptName = @"Address Book";
     _currentDept = firstDept;
-    
-    [[ManagerService contactService] searchDeptListWithID:@"1"];
     
     self.resultController = [[AddressSearchResultController alloc] init];
     self.resultController.delegate = self;
@@ -131,6 +130,11 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(showCurrentDeptMembersView)];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[ManagerService contactService] searchDeptListWithID:@"1"];
+    });
+    
 }
 
 /**

@@ -26,7 +26,9 @@
 #import <TUPIOSSDK/ECSAppConfig.h>
 #import <TUPIOSSDK/eSpaceDBService.h>
 #import <TUPNetworkSDK/ECSSocketController.h>
+#import "call_interface.h"
 
+#define NEEDMAALOGIN 1  // 是否需要MAA登陆
 @interface LoginService()
 
 /**
@@ -166,6 +168,7 @@
          // 配置sipAccount 和 token
          [[ManagerService callService] configBussinessAccount:info.sipAccount token:info.token];
          
+#if NEEDMAALOGIN
          if (isSuccess) {
              NSString *token = [CommonUtils textFromBase64String:info.token];
              // 第三方鉴权返回账号通过userNameForThirdParth字段返回。 tiket鉴权场景下通过userName字段返回。
@@ -233,6 +236,14 @@
                  completionBlock(isSuccess, error);
              }
          }
+#else
+         if (completionBlock) {
+             completionBlock(isSuccess, error);
+         }
+         if (isSuccess) {
+             [self configOtherService];
+         }
+#endif
      }];
 }
 
@@ -270,6 +281,7 @@
         case LOGIN_E_DEPLOY_ENTERPRISE_IPT:
             // uc组网，内置会议
             uPortalConfType = CONF_TOPOLOGY_UC;
+            [self setMediaEnableData];
             break;
         case LOGIN_E_DEPLOY_ENTERPRISE_CC:
             // smc组网， smc会议
@@ -290,6 +302,14 @@
     
     return uPortalConfType;
 }
+
+- (void)setMediaEnableData
+{
+    //辅流媒体开关设置
+    TUP_BOOL media_enable_data = TUP_FALSE;
+    TUP_RESULT ret_media_enable_data = tup_call_set_cfg(CALL_D_CFG_MEDIA_ENABLE_DATA, &media_enable_data);
+}
+
 
 #pragma Public method
 /**

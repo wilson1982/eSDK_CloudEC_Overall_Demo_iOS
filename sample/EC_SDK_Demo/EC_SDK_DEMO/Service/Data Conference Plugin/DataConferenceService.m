@@ -22,14 +22,11 @@
 #import "ConfCameraInfo.h"
 #import "LoginInfo.h"
 #import "ChatMsg.h"
-#import <TUPIOSSDK/ECSUtils.h>
 #import "ConfAttendeeInConf.h"
 #import "ParseConfXMLInfo.h"
 //#import "tup_confctrl_advanced_interface.h"
 #import "tup_conf_extenddef.h"
 #import "tup_conf_otherapi.h"
-#import <TUPIOSSDK/ECSAppConfig.h>
-#import <TUPIOSSDK/ECSUserMAAInfo.h>
 
 static const NSString * const CONF_PING_CALLBACK_KEY = @"CONF_PING_CALLBACK_KEY";
 static const NSMutableDictionary *s_blockDic = [[NSMutableDictionary alloc] init];
@@ -894,7 +891,6 @@ static DataConferenceService *_dataConf = nil;
         
         _dataConfParams = dataConfParams;
         LoginInfo *loginInfo = [[ManagerService loginService] obtainCurrentLoginInfo];
-        ECSUserConfig *config = [ECSAppConfig sharedInstance].currentUser;
         NSArray *array = [[ManagerService callService].sipAccount componentsSeparatedByString:@"@"];
         NSString *shortSipNum = array[0];
         TC_CONF_INFO *confInfo = (TC_CONF_INFO *)malloc(sizeof(TC_CONF_INFO));

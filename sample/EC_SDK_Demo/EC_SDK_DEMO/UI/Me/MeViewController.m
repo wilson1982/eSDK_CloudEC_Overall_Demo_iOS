@@ -14,10 +14,12 @@
 #import <TUPIOSSDK/eSpaceDBService.h>
 #import <TUPContactSDK/TupContactService.h>
 #import <TUPIOSSDK/TUPUserSettingService.h>
+#import <TUPIOSSDK/TUPIOSSDK.h>
 
 #import <TUPIOSSDK/eSpaceDBService.h>
 #import "PersonDetailViewController.h"
 
+#define NEEDREGIESTMAALOGOUT 1   //是否需要MAA注销
 @interface MeViewController ()
 @property(weak, nonatomic)IBOutlet UILabel *sipAccountLabel;
 @property(weak, nonatomic)IBOutlet UILabel *callBackNumber;
@@ -65,6 +67,7 @@
 
 - (IBAction)logout:(id)sender
 {
+#if NEEDREGIESTMAALOGOUT
     [[TUPMAALoginService sharedInstance] logout:^(NSError *error) {
          dispatch_async(dispatch_get_main_queue(), ^{
              if (error) {
@@ -76,7 +79,9 @@
              }
          });
      }];
-    
+#else
+    [[ManagerService loginService] logout];
+#endif
 }
 
 - (IBAction)showSelfDetail:(id)sender {

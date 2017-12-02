@@ -46,6 +46,8 @@ extern NSString *const TUP_CALL_DATACONF_ID_KEY;
 extern NSString *const TUP_CALL_DECODE_SUCCESS_NOTIFY;
 extern NSString *const TUP_CALL_REFRESH_VIEW_NOTIFY;
 
+extern NSString *const TUP_CALL_REMOVE_CALL_VIEW_NOTIFY;
+
 /**
  *This enum is about call enum
  *呼叫事件枚举
