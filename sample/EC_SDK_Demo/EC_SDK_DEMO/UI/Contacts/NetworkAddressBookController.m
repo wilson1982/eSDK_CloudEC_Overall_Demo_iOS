@@ -83,20 +83,6 @@
     }
 }
 
-- (instancetype)init {
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        self.title = @"Address Book";
-        self.tableView.backgroundColor = BGCOLOR;
-        
-        _deptList = [[NSMutableArray alloc] init];
-        _crumbsBtns = [[NSMutableArray alloc] init];
-        _crumbsDepts = [[NSMutableArray alloc] init];
-        _dataDic = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [ManagerService contactService].delegate = self;
@@ -104,12 +90,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Address Book";
+    self.tableView.backgroundColor = BGCOLOR;
+    
+    _deptList = [[NSMutableArray alloc] init];
+    _crumbsBtns = [[NSMutableArray alloc] init];
+    _crumbsDepts = [[NSMutableArray alloc] init];
+    _dataDic = [[NSMutableDictionary alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DeptListCell" bundle:nil] forCellReuseIdentifier:@"DeptListCell"];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
     DeptInfo *firstDept = [[DeptInfo alloc] init];
-    firstDept.deptId = @"1";
+    firstDept.deptId = @"-1";
     firstDept.deptName = @"Address Book";
     _currentDept = firstDept;
     
@@ -130,9 +123,9 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(showCurrentDeptMembersView)];
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[ManagerService contactService] searchDeptListWithID:@"1"];
+        [[ManagerService contactService] searchDeptListWithID:@"-1"];
     });
     
 }
@@ -152,7 +145,7 @@
     searchParam.acSearchItem = _currentSearchText;
     searchParam.ulPageIndex = _searchPageIndex;
     searchParam.ulExactSearch = 0;
-    searchParam.ulSeqNo = rand();
+    searchParam.ulSeqNo = rand() + 101;
     searchParam.acDepId = _currentDept.deptId;
     [[ManagerService contactService] searchContactWithParam:searchParam];
 }

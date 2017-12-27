@@ -11,9 +11,6 @@
 #import "tup_confctrl_def.h"
 #import "tup_confctrl_interface.h"
 #import "tup_conf_basedef.h"
-#import "call_def.h"
-#import "call_interface.h"
-#import "call_advanced_def.h"
 #include <arpa/inet.h>
 #import <string.h>
 #import "ECConfInfo+StructParase.h"
@@ -43,6 +40,7 @@
 @property (nonatomic, assign) BOOL isNeedDataConfParam;           // has getDataConfParam or not
 @property (nonatomic, strong) NSMutableDictionary *confTokenDic;  // update conference token in SMC
 @property (nonatomic, assign) BOOL hasReportMediaxSpeak;          // has reportMediaxSpeak or not in Mediax
+@property (nonatomic, assign) BOOL isFirstJumpToRunningView;      // is first jump to runningViewController
 
 @end
 
@@ -110,6 +108,7 @@
         self.selfJoinNumber = nil;
         self.dataConfParamURLDic = [[NSMutableDictionary alloc]init];
         _hasReportMediaxSpeak = NO;
+        _isFirstJumpToRunningView = YES;
     }
     return self;
 }
@@ -638,17 +637,19 @@
             }
         }
     }
-    confStatus.participants = self.haveJoinAttendeeArray;
-    NSDictionary *resultInfo = @{
-                                 ECCONF_ATTENDEE_UPDATE_KEY: confStatus
-                                 };
-    [self respondsECConferenceDelegateWithType:CONF_E_ATTENDEE_UPDATE_INFO result:resultInfo];
-    
-    // go conference
-    DDLogInfo(@"goConferenceRunView,confStatusStruct->conf_state :%d, isSelfLeaveConf:%d", confStatusStruct->conf_state, isSelfLeaveConf);
-    if (!isSelfLeaveConf && confStatus.conf_state == CONF_STATE_GOING) {
-        [self goConferenceRunView:confStatus needRemoveCallView:isNeedRemoveCallView];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // go conference
+        DDLogInfo(@"goConferenceRunView,confStatusStruct->conf_state :%d, isSelfLeaveConf:%d", confStatusStruct->conf_state, isSelfLeaveConf);
+        if (!isSelfLeaveConf && confStatus.conf_state == CONF_STATE_GOING) {
+            [self goConferenceRunView:confStatus needRemoveCallView:isNeedRemoveCallView];
+        }
+        
+        confStatus.participants = self.haveJoinAttendeeArray;
+        NSDictionary *resultInfo = @{
+                                     ECCONF_ATTENDEE_UPDATE_KEY: confStatus
+                                     };
+        [self respondsECConferenceDelegateWithType:CONF_E_ATTENDEE_UPDATE_INFO result:resultInfo];
+    });
 }
 
 /**
@@ -794,12 +795,13 @@
  */
 -(void)goConferenceRunView:(ConfStatus *)confStatus needRemoveCallView:(BOOL)needRemoveCallWindow
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (needRemoveCallWindow) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TUP_CALL_REMOVE_CALL_VIEW_NOTIFY object:nil];
-        }
+    if (needRemoveCallWindow) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TUP_CALL_REMOVE_CALL_VIEW_NOTIFY object:nil];
+    }
+    if(_isFirstJumpToRunningView){
+        _isFirstJumpToRunningView = NO;
         [AppDelegate goConference:confStatus];
-    });
+    }
 }
 
 #pragma mark  public
@@ -1032,18 +1034,23 @@
  */
 -(unsigned int)accessReservedConference:(ECConfInfo *)confDetailInfo
 {
-    TUP_CALL_TYPE callType = CALL_AUDIO;
-    if (confDetailInfo.media_type == CONF_MEDIATYPE_VOICE)
-    {
-        callType = CALL_AUDIO;
+    int result = 0;
+    if ([self isUportalUSMConf]) {
+        TUP_CALL_TYPE callType = CALL_AUDIO;
+        if (confDetailInfo.media_type == CONF_MEDIATYPE_VOICE)
+        {
+            callType = CALL_AUDIO;
+        }
+        if (confDetailInfo.media_type == CONF_MEDIATYPE_VIDEO || confDetailInfo.media_type == CONF_MEDIATYPE_VIDEO_DATA)
+        {
+            callType = CALL_VIDEO;
+        }
+        NSString *accessNum = [NSString stringWithFormat:@"%@*%@#",confDetailInfo.access_number,confDetailInfo.general_pwd];
+        result =[[ManagerService callService] startCallWithNumber:accessNum type:callType];
+    }else{
+        result = [[ManagerService callService] startECAccessCallWithConfid:confDetailInfo.conf_id AccessNum:confDetailInfo.access_number andPsw:confDetailInfo.general_pwd];
     }
-    if (confDetailInfo.media_type == CONF_MEDIATYPE_VIDEO || confDetailInfo.media_type == CONF_MEDIATYPE_VIDEO_DATA)
-    {
-        callType = CALL_VIDEO;
-    }
-    NSString *accessNum = [NSString stringWithFormat:@"%@*%@#",confDetailInfo.access_number,confDetailInfo.general_pwd];
-    DDLogInfo(@"access number :%@",accessNum);
-    return [[ManagerService callService] startCallWithNumber:accessNum type:callType];
+    return result;
 }
 
 /**
@@ -1172,6 +1179,7 @@
     self.selfJoinNumber = nil;
     self.dataParam = nil;
     _hasReportMediaxSpeak = NO;
+    _isFirstJumpToRunningView = YES;
     [self destroyConfHandle];
 }
 

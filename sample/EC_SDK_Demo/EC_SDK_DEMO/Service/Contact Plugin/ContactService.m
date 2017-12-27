@@ -20,6 +20,8 @@
 #import <TUPIOSSDK/EmployeeEntity.h>
 #import <TUPIOSSDK/eSpaceDBService.h>
 #import <TUPIOSSDK/ESpaceImageCache.h>
+#import "ManagerService.h"
+#import "LoginInfo.h"
 
 #define SIZE52 CGSizeMake(52, 52)
 #define SIZE120 CGSizeMake(120, 120)
@@ -72,8 +74,12 @@ NSString *const TUP_ICON_FILE_KEY                   = @"TUP_ICON_FILE_KEY";
     
     // 使用uPortal鉴权地址
     NSString *serAddrUrl = [NSString stringWithFormat:@"https://%@",info.authServer];
+    NSString *httpAddUrl = [NSString stringWithFormat:@"https://%@:%d/services",info.authServer,info.authServerPort];
+    NSString *avatarAddUrl = [NSString stringWithFormat:@"https://%@:%d/headportrait",info.authServer,info.authServerPort];
     strcpy(uportalConfig->acServerAddr, [serAddrUrl UTF8String]);
-
+    strcpy(uportalConfig->acHttpServerAddr, [httpAddUrl UTF8String]);
+    strcpy(uportalConfig->acIconServerAddr, [avatarAddUrl UTF8String]);
+    
     NSString *iconPath = ICON_PATH;
     NSString *deptFilePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingString:@"/TUPC60log/contact/deptFile"];
     strcpy(uportalConfig->acIconFilePath, [iconPath UTF8String]);
@@ -86,6 +92,9 @@ NSString *const TUP_ICON_FILE_KEY                   = @"TUP_ICON_FILE_KEY";
     
     TUP_RESULT result = tup_eaddr_config(uportalConfig);
     DDLogInfo(@"tup_eaddr_config result: %d",result);
+    if (result == TUP_SUCCESS) {
+        [self searchContactsToConfigSelfTerminalNum];
+    }
     free(uportalConfig);
     return result == TUP_SUCCESS ? YES : NO;
 }
@@ -111,6 +120,13 @@ NSString *const TUP_ICON_FILE_KEY                   = @"TUP_ICON_FILE_KEY";
                 int pageIndex = searchContactorResult->ulPage;
                 
                 TUP_EADDR_S_CONTACTOR_INFO *pstContactorInfo = searchContactorResult->pstContactorInfo;
+                //查询配置自己软终端号
+                if (searchContactorResult->ulSeqNo == 100) {
+                    ContactInfo *contactInfo = [ContactInfo contactInfoTransformFrom:pstContactorInfo[0]];
+                    [[ManagerService callService] configBussinessAccount:contactInfo.terminal token:nil];
+                    return;
+                }
+                
                 NSMutableArray *contactArray = [[NSMutableArray alloc] init];
                 // 搜索到的联系人结果放入联系人数组，传递给界面使用
                 for (int i = 0; i< searchContactorResult->ulTotalNum; i++) {
@@ -278,6 +294,16 @@ NSString *const TUP_ICON_FILE_KEY                   = @"TUP_ICON_FILE_KEY";
     return UIImagePNGRepresentation(newImage);
 }
 
+- (void)searchContactsToConfigSelfTerminalNum {
+    LoginInfo *mine = [[ManagerService loginService] obtainCurrentLoginInfo];
+    SearchParam *searchParam = [[SearchParam alloc] init];
+    searchParam.acSearchItem = mine.account;
+    searchParam.ulPageIndex = 1;
+    searchParam.ulExactSearch = 0;
+    searchParam.ulSeqNo = 100;
+    [self searchContactWithParam:searchParam];
+}
+
 /**
  * This method is used to search corporate directory contacts
  * 搜索联系人信息
@@ -290,7 +316,9 @@ NSString *const TUP_ICON_FILE_KEY                   = @"TUP_ICON_FILE_KEY";
     tupSearchParam->ulExactSearch = searchParam.ulExactSearch;
     tupSearchParam->ulSeqNo = searchParam.ulSeqNo;
     tupSearchParam->ulPageIndex = searchParam.ulPageIndex;
-    strcpy(tupSearchParam->acDepId, [searchParam.acDepId UTF8String]);
+    if (searchParam.acDepId.length > 0 && searchParam.acDepId != nil && ![searchParam.acDepId isEqualToString:@"-1"]) {
+        strcpy(tupSearchParam->acDepId, [searchParam.acDepId UTF8String]);
+    }
     strcpy(tupSearchParam->acSearchItem, [searchParam.acSearchItem UTF8String]);
     TUP_RESULT result = tup_eaddr_search_contactor(tupSearchParam);
     DDLogInfo(@"tup_eaddr_search_contactor result: %d",result);
@@ -324,7 +352,7 @@ NSString *const TUP_ICON_FILE_KEY                   = @"TUP_ICON_FILE_KEY";
     memset(iconParam, 0, sizeof(TUP_EADDR_S_ICON_PARAM));
     strcpy(iconParam->acStaffAccount, [account UTF8String]);
     iconParam->ulSeqNo = rand();
-    iconParam->enMsgPrio = EADDR_MSG_PRIO_MID; // The priority of loaded head image
+    iconParam->enMsgPrio = EADDR_MSG_PRIO_HIGH; // The priority of loaded head image
     TUP_RESULT result = tup_eaddr_get_usericon(iconParam);
     DDLogInfo(@"tup_eaddr_get_usericon result: %d", result);
     free(iconParam);

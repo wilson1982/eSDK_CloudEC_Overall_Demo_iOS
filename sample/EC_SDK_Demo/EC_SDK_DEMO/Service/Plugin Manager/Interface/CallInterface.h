@@ -184,6 +184,20 @@ typedef NS_ENUM(NSUInteger, IPTConfigType){
 - (void)stopVideoPreview;
 
 /**
+ *This method is used to start EC access number to join conference
+ *EC接入码入会
+ *@param confid                  Indicates confid
+ *                               会议Id
+ *@param acceseNum               Indicates accese number
+ *                               会议接入码
+ *@param psw                     Indicates password
+ *                               会议密码
+ *@return unsigned int           Return call id, equal zero mean start call fail.
+ *                               返回呼叫id,失败返回0
+ */
+- (unsigned int) startECAccessCallWithConfid:(NSString *)confid AccessNum:(NSString *)acceseNum andPsw:(NSString *)psw;
+
+/**
  *This method is used to start point to point audio call or video call
  *发起音视频呼叫
  *@param number                  Indicates number

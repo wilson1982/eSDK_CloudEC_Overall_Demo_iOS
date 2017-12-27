@@ -96,10 +96,6 @@
             default:
                 break;
         }
-        if (_confInfo.media_type == 17)
-        {
-            _mediaType.text = @"Data conference";
-        }
         switch (_confInfo.conf_state)
         {
             case CONF_E_CONF_STATE_SCHEDULE:
@@ -118,15 +114,13 @@
                 break;
         }
     }
+    if (ecConfEvent == CONF_E_ATTENDEE_UPDATE_INFO) {
+        DDLogInfo(@"ConfDetailViewController,CONF_E_ATTENDEE_UPDATE_INFO");
+    }
 }
 
 - (IBAction)joinConferenceButtonAction:(id)sender
 {
-//    if (_confInfo.media_type == 17)
-//    {
-//        [self showMessage:@"Can not directly joining the data conference"];
-//        return;
-//    }
     if (_confInfo.conf_state == CONF_E_CONF_STATE_DESTROYED)
     {
         [self showMessage:@"This conference have been end!"];

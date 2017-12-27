@@ -985,9 +985,14 @@
                 else {
                     [self showMessage:@"Create conference success"];
                 }
-                
-            }
                 break;
+            }
+                
+            case CONF_E_ATTENDEE_UPDATE_INFO:
+            {
+                DDLogInfo(@"CreateConfViewController,CONF_E_ATTENDEE_UPDATE_INFO");
+                break;
+            }
             case CONF_E_CURRENTCONF_DETAIL:
             {
                 _currentConfStatus = resultDictionary[ECCONF_CURRENTCONF_DETAIL_KEY];
@@ -997,16 +1002,17 @@
                     [self dismissViewControllerAnimated:YES completion:nil];
                     return;
                 }
-                
+                break;
+            }
             case CONF_E_END_RESULT:
             {
-//                [self performSelector:@selector(refreshConfList) withObject:nil afterDelay:3];
-            }
+                DDLogInfo(@"CreateConfViewController,CONF_E_END_RESULT");
                 break;
+            }
                 
             default:
                 break;
-        }
+        
         }
     });
 }

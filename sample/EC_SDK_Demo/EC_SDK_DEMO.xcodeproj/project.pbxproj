@@ -138,7 +138,6 @@
 		410CF1DC1FA9A9CA002CB4EC /* libsecurec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1861FA9A9CA002CB4EC /* libsecurec.a */; };
 		410CF1DD1FA9A9CA002CB4EC /* libsipstacktup.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1871FA9A9CA002CB4EC /* libsipstacktup.a */; };
 		410CF1DE1FA9A9CA002CB4EC /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1881FA9A9CA002CB4EC /* libssl.a */; };
-		410CF1DF1FA9A9CA002CB4EC /* libtscsvn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1891FA9A9CA002CB4EC /* libtscsvn.a */; };
 		410CF1E01FA9A9CA002CB4EC /* libtup_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF18A1FA9A9CA002CB4EC /* libtup_base.a */; };
 		410CF1E11FA9A9CA002CB4EC /* libtup_call_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF18B1FA9A9CA002CB4EC /* libtup_call_audio.a */; };
 		410CF1E21FA9A9CA002CB4EC /* libtup_call_bfcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF18C1FA9A9CA002CB4EC /* libtup_call_bfcp.a */; };
@@ -163,17 +162,6 @@
 		410CF1F61FA9A9CA002CB4EC /* libtup_https_clt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A01FA9A9CA002CB4EC /* libtup_https_clt.a */; };
 		410CF1F71FA9A9CA002CB4EC /* libtup_https_srv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A11FA9A9CA002CB4EC /* libtup_https_srv.a */; };
 		410CF1F81FA9A9CA002CB4EC /* libtup_httptrans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A21FA9A9CA002CB4EC /* libtup_httptrans.a */; };
-		410CF1F91FA9A9CA002CB4EC /* libtup_im_basemessage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A31FA9A9CA002CB4EC /* libtup_im_basemessage.a */; };
-		410CF1FA1FA9A9CA002CB4EC /* libtup_im_clib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A41FA9A9CA002CB4EC /* libtup_im_clib.a */; };
-		410CF1FB1FA9A9CA002CB4EC /* libtup_im_clientimpl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A51FA9A9CA002CB4EC /* libtup_im_clientimpl.a */; };
-		410CF1FC1FA9A9CA002CB4EC /* libtup_im_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A61FA9A9CA002CB4EC /* libtup_im_core.a */; };
-		410CF1FD1FA9A9CA002CB4EC /* libtup_im_ctk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A71FA9A9CA002CB4EC /* libtup_im_ctk.a */; };
-		410CF1FE1FA9A9CA002CB4EC /* libtup_im_ecsimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A81FA9A9CA002CB4EC /* libtup_im_ecsimp.a */; };
-		410CF1FF1FA9A9CA002CB4EC /* libtup_im_eserverimpl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1A91FA9A9CA002CB4EC /* libtup_im_eserverimpl.a */; };
-		410CF2001FA9A9CA002CB4EC /* libtup_im_json.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1AA1FA9A9CA002CB4EC /* libtup_im_json.a */; };
-		410CF2011FA9A9CA002CB4EC /* libtup_im_message.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1AB1FA9A9CA002CB4EC /* libtup_im_message.a */; };
-		410CF2021FA9A9CA002CB4EC /* libtup_im_service.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1AC1FA9A9CA002CB4EC /* libtup_im_service.a */; };
-		410CF2031FA9A9CA002CB4EC /* libtup_im_util.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1AD1FA9A9CA002CB4EC /* libtup_im_util.a */; };
 		410CF2041FA9A9CA002CB4EC /* libtup_ipdetect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1AE1FA9A9CA002CB4EC /* libtup_ipdetect.a */; };
 		410CF2051FA9A9CA002CB4EC /* libtup_ldap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1AF1FA9A9CA002CB4EC /* libtup_ldap.a */; };
 		410CF2061FA9A9CA002CB4EC /* libtup_ldapdisasterrecovery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1B01FA9A9CA002CB4EC /* libtup_ldapdisasterrecovery.a */; };
@@ -186,14 +174,10 @@
 		410CF20D1FA9A9CA002CB4EC /* libtup_os_adapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1B71FA9A9CA002CB4EC /* libtup_os_adapter.a */; };
 		410CF20E1FA9A9CA002CB4EC /* libtup_publiclib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1B81FA9A9CA002CB4EC /* libtup_publiclib.a */; };
 		410CF20F1FA9A9CA002CB4EC /* libtup_rsa_encrypt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1B91FA9A9CA002CB4EC /* libtup_rsa_encrypt.a */; };
-		410CF2101FA9A9CA002CB4EC /* libtup_socket_stg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1BA1FA9A9CA002CB4EC /* libtup_socket_stg.a */; };
-		410CF2111FA9A9CA002CB4EC /* libtup_socket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1BB1FA9A9CA002CB4EC /* libtup_socket.a */; };
 		410CF2121FA9A9CA002CB4EC /* libtup_support.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1BC1FA9A9CA002CB4EC /* libtup_support.a */; };
 		410CF2131FA9A9CA002CB4EC /* libtup_svnapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1BD1FA9A9CA002CB4EC /* libtup_svnapi.a */; };
 		410CF2141FA9A9CA002CB4EC /* libtup_xml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1BE1FA9A9CA002CB4EC /* libtup_xml.a */; };
 		410CF2151FA9A9CA002CB4EC /* libTupConf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1BF1FA9A9CA002CB4EC /* libTupConf.a */; };
-		410CF2161FA9A9CA002CB4EC /* libtupService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1C01FA9A9CA002CB4EC /* libtupService.a */; };
-		410CF2171FA9A9CA002CB4EC /* libuspsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1C11FA9A9CA002CB4EC /* libuspsdk.a */; };
 		410CF2181FA9A9CA002CB4EC /* libvcom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1C21FA9A9CA002CB4EC /* libvcom.a */; };
 		410CF2191FA9A9CA002CB4EC /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CF1C31FA9A9CA002CB4EC /* libwebsockets.a */; };
 		4147BB8D1FBD895300EB373A /* emotion.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4147BB8C1FBD895300EB373A /* emotion.xml */; };
@@ -529,12 +513,6 @@
 		410CF1631FA9A9BA002CB4EC /* tup_eaddr_def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_eaddr_def.h; sourceTree = "<group>"; };
 		410CF1641FA9A9BA002CB4EC /* tup_eaddr_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_eaddr_interface.h; sourceTree = "<group>"; };
 		410CF1651FA9A9BA002CB4EC /* tup_errdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_errdef.h; sourceTree = "<group>"; };
-		410CF1661FA9A9BA002CB4EC /* tup_im_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_im_base.h; sourceTree = "<group>"; };
-		410CF1671FA9A9BA002CB4EC /* tup_im_baseapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_im_baseapi.h; sourceTree = "<group>"; };
-		410CF1681FA9A9BA002CB4EC /* tup_im_basedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_im_basedef.h; sourceTree = "<group>"; };
-		410CF1691FA9A9BA002CB4EC /* tup_im_extendapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_im_extendapi.h; sourceTree = "<group>"; };
-		410CF16A1FA9A9BA002CB4EC /* tup_im_extenddef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_im_extenddef.h; sourceTree = "<group>"; };
-		410CF16B1FA9A9BA002CB4EC /* tup_im_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_im_util.h; sourceTree = "<group>"; };
 		410CF16C1FA9A9BA002CB4EC /* tup_openmedia_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_openmedia_interface.h; sourceTree = "<group>"; };
 		410CF16D1FA9A9BA002CB4EC /* tup_service_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tup_service_interface.h; sourceTree = "<group>"; };
 		410CF16E1FA9A9CA002CB4EC /* libACE.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libACE.a; sourceTree = "<group>"; };
@@ -564,7 +542,6 @@
 		410CF1861FA9A9CA002CB4EC /* libsecurec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsecurec.a; sourceTree = "<group>"; };
 		410CF1871FA9A9CA002CB4EC /* libsipstacktup.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsipstacktup.a; sourceTree = "<group>"; };
 		410CF1881FA9A9CA002CB4EC /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		410CF1891FA9A9CA002CB4EC /* libtscsvn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtscsvn.a; sourceTree = "<group>"; };
 		410CF18A1FA9A9CA002CB4EC /* libtup_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_base.a; sourceTree = "<group>"; };
 		410CF18B1FA9A9CA002CB4EC /* libtup_call_audio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_call_audio.a; sourceTree = "<group>"; };
 		410CF18C1FA9A9CA002CB4EC /* libtup_call_bfcp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_call_bfcp.a; sourceTree = "<group>"; };
@@ -589,17 +566,6 @@
 		410CF1A01FA9A9CA002CB4EC /* libtup_https_clt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_https_clt.a; sourceTree = "<group>"; };
 		410CF1A11FA9A9CA002CB4EC /* libtup_https_srv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_https_srv.a; sourceTree = "<group>"; };
 		410CF1A21FA9A9CA002CB4EC /* libtup_httptrans.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_httptrans.a; sourceTree = "<group>"; };
-		410CF1A31FA9A9CA002CB4EC /* libtup_im_basemessage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_basemessage.a; sourceTree = "<group>"; };
-		410CF1A41FA9A9CA002CB4EC /* libtup_im_clib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_clib.a; sourceTree = "<group>"; };
-		410CF1A51FA9A9CA002CB4EC /* libtup_im_clientimpl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_clientimpl.a; sourceTree = "<group>"; };
-		410CF1A61FA9A9CA002CB4EC /* libtup_im_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_core.a; sourceTree = "<group>"; };
-		410CF1A71FA9A9CA002CB4EC /* libtup_im_ctk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_ctk.a; sourceTree = "<group>"; };
-		410CF1A81FA9A9CA002CB4EC /* libtup_im_ecsimp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_ecsimp.a; sourceTree = "<group>"; };
-		410CF1A91FA9A9CA002CB4EC /* libtup_im_eserverimpl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_eserverimpl.a; sourceTree = "<group>"; };
-		410CF1AA1FA9A9CA002CB4EC /* libtup_im_json.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_json.a; sourceTree = "<group>"; };
-		410CF1AB1FA9A9CA002CB4EC /* libtup_im_message.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_message.a; sourceTree = "<group>"; };
-		410CF1AC1FA9A9CA002CB4EC /* libtup_im_service.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_service.a; sourceTree = "<group>"; };
-		410CF1AD1FA9A9CA002CB4EC /* libtup_im_util.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_im_util.a; sourceTree = "<group>"; };
 		410CF1AE1FA9A9CA002CB4EC /* libtup_ipdetect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_ipdetect.a; sourceTree = "<group>"; };
 		410CF1AF1FA9A9CA002CB4EC /* libtup_ldap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_ldap.a; sourceTree = "<group>"; };
 		410CF1B01FA9A9CA002CB4EC /* libtup_ldapdisasterrecovery.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_ldapdisasterrecovery.a; sourceTree = "<group>"; };
@@ -612,14 +578,10 @@
 		410CF1B71FA9A9CA002CB4EC /* libtup_os_adapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_os_adapter.a; sourceTree = "<group>"; };
 		410CF1B81FA9A9CA002CB4EC /* libtup_publiclib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_publiclib.a; sourceTree = "<group>"; };
 		410CF1B91FA9A9CA002CB4EC /* libtup_rsa_encrypt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_rsa_encrypt.a; sourceTree = "<group>"; };
-		410CF1BA1FA9A9CA002CB4EC /* libtup_socket_stg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_socket_stg.a; sourceTree = "<group>"; };
-		410CF1BB1FA9A9CA002CB4EC /* libtup_socket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_socket.a; sourceTree = "<group>"; };
 		410CF1BC1FA9A9CA002CB4EC /* libtup_support.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_support.a; sourceTree = "<group>"; };
 		410CF1BD1FA9A9CA002CB4EC /* libtup_svnapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_svnapi.a; sourceTree = "<group>"; };
 		410CF1BE1FA9A9CA002CB4EC /* libtup_xml.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtup_xml.a; sourceTree = "<group>"; };
 		410CF1BF1FA9A9CA002CB4EC /* libTupConf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTupConf.a; sourceTree = "<group>"; };
-		410CF1C01FA9A9CA002CB4EC /* libtupService.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtupService.a; sourceTree = "<group>"; };
-		410CF1C11FA9A9CA002CB4EC /* libuspsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libuspsdk.a; sourceTree = "<group>"; };
 		410CF1C21FA9A9CA002CB4EC /* libvcom.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libvcom.a; sourceTree = "<group>"; };
 		410CF1C31FA9A9CA002CB4EC /* libwebsockets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwebsockets.a; sourceTree = "<group>"; };
 		4147BB8C1FBD895300EB373A /* emotion.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = emotion.xml; sourceTree = "<group>"; };
@@ -739,7 +701,6 @@
 		8DDC27D31F3AEFDA00DE5353 /* ECCurrentConfInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCurrentConfInfo.m; sourceTree = "<group>"; };
 		8DDC27D41F3AEFDA00DE5353 /* ConferenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceService.h; sourceTree = "<group>"; };
 		8DDC27D51F3AEFDA00DE5353 /* ConferenceService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConferenceService.mm; sourceTree = "<group>"; };
-		8DDC27D81F3AEFDA00DE5353 /* ConfSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfSDK.h; sourceTree = "<group>"; };
 		8DF838001F43EA86009BA0C1 /* AttendeeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeeListCell.h; sourceTree = "<group>"; };
 		8DF838011F43EA86009BA0C1 /* AttendeeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeeListCell.m; sourceTree = "<group>"; };
 		8DF838021F43EA86009BA0C1 /* ConfListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfListCell.h; sourceTree = "<group>"; };
@@ -779,15 +740,12 @@
 				410CF1C41FA9A9CA002CB4EC /* libACE.a in Frameworks */,
 				410CF2151FA9A9CA002CB4EC /* libTupConf.a in Frameworks */,
 				1258C1EA1F39E27D00654D80 /* libiconv.2.dylib in Frameworks */,
-				410CF1FF1FA9A9CA002CB4EC /* libtup_im_eserverimpl.a in Frameworks */,
 				410CF2141FA9A9CA002CB4EC /* libtup_xml.a in Frameworks */,
 				410CF1EB1FA9A9CA002CB4EC /* libtup_confctrl.a in Frameworks */,
 				1258C1D81F39593100654D80 /* libresolv.9.dylib in Frameworks */,
 				410CF1E71FA9A9CA002CB4EC /* libtup_call_video.a in Frameworks */,
 				410CF1C81FA9A9CA002CB4EC /* libHME-Video.a in Frameworks */,
-				410CF2161FA9A9CA002CB4EC /* libtupService.a in Frameworks */,
 				410CF2081FA9A9CA002CB4EC /* libtup_ldapstack.a in Frameworks */,
-				410CF2111FA9A9CA002CB4EC /* libtup_socket.a in Frameworks */,
 				1258C1D91F39593100654D80 /* libstdc++.6.0.9.dylib in Frameworks */,
 				410CF1DB1FA9A9CA002CB4EC /* libsdp.a in Frameworks */,
 				1258C1DA1F39593100654D80 /* libz.1.dylib in Frameworks */,
@@ -797,17 +755,13 @@
 				410CF2051FA9A9CA002CB4EC /* libtup_ldap.a in Frameworks */,
 				410CF1F41FA9A9CA002CB4EC /* libtup_ftp.a in Frameworks */,
 				1258C1D41F39590400654D80 /* CoreMedia.framework in Frameworks */,
-				410CF2021FA9A9CA002CB4EC /* libtup_im_service.a in Frameworks */,
 				410CF1DC1FA9A9CA002CB4EC /* libsecurec.a in Frameworks */,
 				410CF1E41FA9A9CA002CB4EC /* libtup_call_mediaservice.a in Frameworks */,
-				410CF1DF1FA9A9CA002CB4EC /* libtscsvn.a in Frameworks */,
 				410CF1C71FA9A9CA002CB4EC /* libhme-audio.a in Frameworks */,
-				410CF1FA1FA9A9CA002CB4EC /* libtup_im_clib.a in Frameworks */,
 				410CF1EE1FA9A9CA002CB4EC /* libtup_ctd.a in Frameworks */,
 				410CF2131FA9A9CA002CB4EC /* libtup_svnapi.a in Frameworks */,
 				410CF1CD1FA9A9CA002CB4EC /* libHW_MPT_IOS_G729AB_LIB.a in Frameworks */,
 				410CF1DD1FA9A9CA002CB4EC /* libsipstacktup.a in Frameworks */,
-				410CF1FD1FA9A9CA002CB4EC /* libtup_im_ctk.a in Frameworks */,
 				410CF1CC1FA9A9CA002CB4EC /* libHW_MPT_IOS_G722_LIB.a in Frameworks */,
 				410CF1C91FA9A9CA002CB4EC /* libHW_MPT_AUDIO_AAC_LIB.a in Frameworks */,
 				410CF1E31FA9A9CA002CB4EC /* libtup_call_mediacommon.a in Frameworks */,
@@ -816,7 +770,6 @@
 				410CF1DE1FA9A9CA002CB4EC /* libssl.a in Frameworks */,
 				410CF20B1FA9A9CA002CB4EC /* libtup_msg.a in Frameworks */,
 				410CF14B1FA9A994002CB4EC /* TUPIMSDK.framework in Frameworks */,
-				410CF2031FA9A9CA002CB4EC /* libtup_im_util.a in Frameworks */,
 				410CF2061FA9A9CA002CB4EC /* libtup_ldapdisasterrecovery.a in Frameworks */,
 				410CF20D1FA9A9CA002CB4EC /* libtup_os_adapter.a in Frameworks */,
 				410CF20F1FA9A9CA002CB4EC /* libtup_rsa_encrypt.a in Frameworks */,
@@ -825,7 +778,6 @@
 				410CF1E51FA9A9CA002CB4EC /* libtup_call_service.a in Frameworks */,
 				410CF1F71FA9A9CA002CB4EC /* libtup_https_srv.a in Frameworks */,
 				410CF1CB1FA9A9CA002CB4EC /* libHW_MPT_IOS_AMRWB_LIB.a in Frameworks */,
-				410CF2171FA9A9CA002CB4EC /* libuspsdk.a in Frameworks */,
 				410CF1EC1FA9A9CA002CB4EC /* libtup_confmng.a in Frameworks */,
 				410CF1F11FA9A9CA002CB4EC /* libtup_eaddr_h5.a in Frameworks */,
 				410CF1D11FA9A9CA002CB4EC /* libipsi_eap.a in Frameworks */,
@@ -838,7 +790,6 @@
 				410CF2121FA9A9CA002CB4EC /* libtup_support.a in Frameworks */,
 				410CF1E11FA9A9CA002CB4EC /* libtup_call_audio.a in Frameworks */,
 				410CF1D21FA9A9CA002CB4EC /* libipsi_http.a in Frameworks */,
-				410CF1FB1FA9A9CA002CB4EC /* libtup_im_clientimpl.a in Frameworks */,
 				1258C1D21F3958FF00654D80 /* MediaPlayer.framework in Frameworks */,
 				410CF2191FA9A9CA002CB4EC /* libwebsockets.a in Frameworks */,
 				410CF20E1FA9A9CA002CB4EC /* libtup_publiclib.a in Frameworks */,
@@ -846,12 +797,10 @@
 				1258C1D01F3958F900654D80 /* AVFoundation.framework in Frameworks */,
 				410CF1EA1FA9A9CA002CB4EC /* libtup_commonlib.a in Frameworks */,
 				410CF1CA1FA9A9CA002CB4EC /* libHW_MPT_IOS_AMR_LIB.a in Frameworks */,
-				410CF1F91FA9A9CA002CB4EC /* libtup_im_basemessage.a in Frameworks */,
 				410CF1D41FA9A9CA002CB4EC /* libipsi_pse.a in Frameworks */,
 				410CF14C1FA9A994002CB4EC /* TUPIOSSDK.framework in Frameworks */,
 				410CF2181FA9A9CA002CB4EC /* libvcom.a in Frameworks */,
 				410CF20A1FA9A9CA002CB4EC /* libtup_logone.a in Frameworks */,
-				410CF1FC1FA9A9CA002CB4EC /* libtup_im_core.a in Frameworks */,
 				410CF1D61FA9A9CA002CB4EC /* libjsoncpp.a in Frameworks */,
 				410CF2041FA9A9CA002CB4EC /* libtup_ipdetect.a in Frameworks */,
 				410CF1CE1FA9A9CA002CB4EC /* libHW_MPT_IOS_ILBC_LIB.a in Frameworks */,
@@ -860,12 +809,8 @@
 				1258C1CE1F3958F500654D80 /* VideoToolbox.framework in Frameworks */,
 				410CF1F81FA9A9CA002CB4EC /* libtup_httptrans.a in Frameworks */,
 				410CF1C51FA9A9CA002CB4EC /* libcrypto.a in Frameworks */,
-				410CF2101FA9A9CA002CB4EC /* libtup_socket_stg.a in Frameworks */,
-				410CF1FE1FA9A9CA002CB4EC /* libtup_im_ecsimp.a in Frameworks */,
 				410CF1D31FA9A9CA002CB4EC /* libipsi_osal.a in Frameworks */,
-				410CF2011FA9A9CA002CB4EC /* libtup_im_message.a in Frameworks */,
 				410CF20C1FA9A9CA002CB4EC /* libtup_openmedia.a in Frameworks */,
-				410CF2001FA9A9CA002CB4EC /* libtup_im_json.a in Frameworks */,
 				1258C1CC1F3958EF00654D80 /* AudioToolbox.framework in Frameworks */,
 				410CF1CF1FA9A9CA002CB4EC /* libHW_MPT_IOS_OPUS_LIB.a in Frameworks */,
 			);
@@ -1372,12 +1317,6 @@
 				410CF1631FA9A9BA002CB4EC /* tup_eaddr_def.h */,
 				410CF1641FA9A9BA002CB4EC /* tup_eaddr_interface.h */,
 				410CF1651FA9A9BA002CB4EC /* tup_errdef.h */,
-				410CF1661FA9A9BA002CB4EC /* tup_im_base.h */,
-				410CF1671FA9A9BA002CB4EC /* tup_im_baseapi.h */,
-				410CF1681FA9A9BA002CB4EC /* tup_im_basedef.h */,
-				410CF1691FA9A9BA002CB4EC /* tup_im_extendapi.h */,
-				410CF16A1FA9A9BA002CB4EC /* tup_im_extenddef.h */,
-				410CF16B1FA9A9BA002CB4EC /* tup_im_util.h */,
 				410CF16C1FA9A9BA002CB4EC /* tup_openmedia_interface.h */,
 				410CF16D1FA9A9BA002CB4EC /* tup_service_interface.h */,
 			);
@@ -1414,7 +1353,6 @@
 				410CF1861FA9A9CA002CB4EC /* libsecurec.a */,
 				410CF1871FA9A9CA002CB4EC /* libsipstacktup.a */,
 				410CF1881FA9A9CA002CB4EC /* libssl.a */,
-				410CF1891FA9A9CA002CB4EC /* libtscsvn.a */,
 				410CF18A1FA9A9CA002CB4EC /* libtup_base.a */,
 				410CF18B1FA9A9CA002CB4EC /* libtup_call_audio.a */,
 				410CF18C1FA9A9CA002CB4EC /* libtup_call_bfcp.a */,
@@ -1439,17 +1377,6 @@
 				410CF1A01FA9A9CA002CB4EC /* libtup_https_clt.a */,
 				410CF1A11FA9A9CA002CB4EC /* libtup_https_srv.a */,
 				410CF1A21FA9A9CA002CB4EC /* libtup_httptrans.a */,
-				410CF1A31FA9A9CA002CB4EC /* libtup_im_basemessage.a */,
-				410CF1A41FA9A9CA002CB4EC /* libtup_im_clib.a */,
-				410CF1A51FA9A9CA002CB4EC /* libtup_im_clientimpl.a */,
-				410CF1A61FA9A9CA002CB4EC /* libtup_im_core.a */,
-				410CF1A71FA9A9CA002CB4EC /* libtup_im_ctk.a */,
-				410CF1A81FA9A9CA002CB4EC /* libtup_im_ecsimp.a */,
-				410CF1A91FA9A9CA002CB4EC /* libtup_im_eserverimpl.a */,
-				410CF1AA1FA9A9CA002CB4EC /* libtup_im_json.a */,
-				410CF1AB1FA9A9CA002CB4EC /* libtup_im_message.a */,
-				410CF1AC1FA9A9CA002CB4EC /* libtup_im_service.a */,
-				410CF1AD1FA9A9CA002CB4EC /* libtup_im_util.a */,
 				410CF1AE1FA9A9CA002CB4EC /* libtup_ipdetect.a */,
 				410CF1AF1FA9A9CA002CB4EC /* libtup_ldap.a */,
 				410CF1B01FA9A9CA002CB4EC /* libtup_ldapdisasterrecovery.a */,
@@ -1462,14 +1389,10 @@
 				410CF1B71FA9A9CA002CB4EC /* libtup_os_adapter.a */,
 				410CF1B81FA9A9CA002CB4EC /* libtup_publiclib.a */,
 				410CF1B91FA9A9CA002CB4EC /* libtup_rsa_encrypt.a */,
-				410CF1BA1FA9A9CA002CB4EC /* libtup_socket_stg.a */,
-				410CF1BB1FA9A9CA002CB4EC /* libtup_socket.a */,
 				410CF1BC1FA9A9CA002CB4EC /* libtup_support.a */,
 				410CF1BD1FA9A9CA002CB4EC /* libtup_svnapi.a */,
 				410CF1BE1FA9A9CA002CB4EC /* libtup_xml.a */,
 				410CF1BF1FA9A9CA002CB4EC /* libTupConf.a */,
-				410CF1C01FA9A9CA002CB4EC /* libtupService.a */,
-				410CF1C11FA9A9CA002CB4EC /* libuspsdk.a */,
 				410CF1C21FA9A9CA002CB4EC /* libvcom.a */,
 				410CF1C31FA9A9CA002CB4EC /* libwebsockets.a */,
 			);
@@ -1583,7 +1506,6 @@
 				8DDC27C31F3AEFDA00DE5353 /* Model */,
 				8DDC27D41F3AEFDA00DE5353 /* ConferenceService.h */,
 				8DDC27D51F3AEFDA00DE5353 /* ConferenceService.mm */,
-				8DDC27D81F3AEFDA00DE5353 /* ConfSDK.h */,
 			);
 			path = "Conference Plugin";
 			sourceTree = "<group>";

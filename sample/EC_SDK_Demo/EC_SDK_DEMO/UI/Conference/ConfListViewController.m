@@ -124,6 +124,9 @@ typedef NS_ENUM(NSInteger, ESpaceConfListSection){
         _confListAll = resultDictionary[ECCONF_LIST_KEY];;
         [self reloadDataWithConfList:_confListAll];
     }
+    if (ecConfEvent == CONF_E_ATTENDEE_UPDATE_INFO) {
+        DDLogInfo(@"ConfListViewController,CONF_E_ATTENDEE_UPDATE_INFO");
+    }
 }
 
 - (IBAction)createConf:(id)sender {
@@ -132,6 +135,45 @@ typedef NS_ENUM(NSInteger, ESpaceConfListSection){
     ctrl.title = @"Create Meeting";
     [self.navigationController pushViewController:ctrl animated:YES];
 }
+
+- (IBAction)accessConfByCode:(id)sender {
+    UIAlertController *alertCon = [UIAlertController alertControllerWithTitle:nil message:@"Access conference" preferredStyle:UIAlertControllerStyleAlert];
+    [alertCon addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"conference id";
+        textField.secureTextEntry = NO;
+    }];
+    [alertCon addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"account";
+        textField.secureTextEntry = NO;
+    }];
+    [alertCon addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"conf password";
+        textField.secureTextEntry = NO;
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Access" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *accountTxf0 = alertCon.textFields.firstObject;
+        UITextField *accountTxf1 = alertCon.textFields[1];
+        UITextField *accountTxf2 = alertCon.textFields[2];
+        NSString *confId = accountTxf0.text;
+        NSString *account = accountTxf1.text;
+        NSString *password = accountTxf2.text;
+        if (confId.length > 0 && account.length > 0 && password.length > 0) {
+            ECConfInfo *confInfo = [[ECConfInfo alloc]init];
+            confInfo.general_pwd = password;
+            confInfo.conf_id = confId;
+            confInfo.access_number = account;
+            [[ManagerService confService] accessReservedConference:confInfo];
+        }
+        
+    }];
+    [alertCon addAction:okAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    [alertCon addAction:cancelAction];
+    [self presentViewController:alertCon animated:YES completion:nil];
+}
+
+
 #pragma mark - private methods
 
 -(void)reloadDataWithConfList:(NSArray *)listArray{

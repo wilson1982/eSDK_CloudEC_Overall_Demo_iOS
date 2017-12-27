@@ -183,8 +183,12 @@ NSString *const NTF_AUDIOROUTE_CHANGED = @"NTF_AUDIOROUTE_CHANGED";
 - (void)configBussinessAccount:(NSString *)sipAccount
                          token:(NSString *)token
 {
-    self.token = token;
-    self.sipAccount = sipAccount;
+    if (token.length > 0 || token != nil) {
+        self.token = token;
+    }
+    if (sipAccount.length > 0 || sipAccount != nil) {
+        self.sipAccount = sipAccount;
+    }
 }
 
 /**
@@ -1002,6 +1006,38 @@ NSString *const NTF_AUDIOROUTE_CHANGED = @"NTF_AUDIOROUTE_CHANGED";
 -(void)stopVideoPreview
 {
     tup_call_close_preview();
+}
+
+/**
+ *This method is used to start EC access number to join conference
+ *EC接入码入会
+ *@param confid                  Indicates confid
+ *                               会议Id
+ *@param acceseNum               Indicates accese number
+ *                               会议接入码
+ *@param psw                     Indicates password
+ *                               会议密码
+ *@return unsigned int           Return call id, equal zero mean start call fail.
+ *                               返回呼叫id,失败返回0
+ */
+- (unsigned int) startECAccessCallWithConfid:(NSString *)confid AccessNum:(NSString *)acceseNum andPsw:(NSString *)psw
+{
+    TUP_UINT32 callid = 0;
+    CALL_S_CONF_PARAM *confParam = (CALL_S_CONF_PARAM *)malloc(sizeof(CALL_S_CONF_PARAM));
+    memset_s(confParam, sizeof(CALL_S_CONF_PARAM), 0, sizeof(CALL_S_CONF_PARAM));
+    if (confid.length > 0 && confid != nil) {
+        strcpy(confParam->confid, [confid UTF8String]);
+    }
+    if (psw.length > 0 && psw != nil) {
+        strcpy(confParam->conf_paswd, [psw UTF8String]);
+    }
+    if (acceseNum.length > 0 && acceseNum != nil) {
+        strcpy(confParam->access_code, [acceseNum UTF8String]);
+    }
+    //callType  默认使用CALL_E_CALL_TYPE_IPVIDEO
+    TUP_RESULT ret_ex = tup_call_serverconf_access_reservedconf_ex(&callid, CALL_E_CALL_TYPE_IPVIDEO, confParam);
+    return callid;
+    
 }
 
 /**
@@ -1866,7 +1902,7 @@ NSString *const NTF_AUDIOROUTE_CHANGED = @"NTF_AUDIOROUTE_CHANGED";
     directMode.video_dir = CALL_E_MEDIA_SENDMODE_SENDRECV;
     directMode.aux_dir = CALL_E_MEDIA_SENDMODE_INACTIVE;
     TUP_RESULT ret_call_capability = tup_call_set_call_capability(callid, CALL_E_PROTOCOL_SIP, CALL_E_LOCAL_CAP_DIRECTION, &directMode);
-    
+
     TUP_RESULT ret_reinvite = tup_call_reinvite(callid);
     DDLogInfo(@"tup_call_reinvite,result:%d",ret_reinvite);
     return (TUP_SUCCESS == ret_reinvite);

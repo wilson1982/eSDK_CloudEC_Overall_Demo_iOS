@@ -119,7 +119,7 @@
     searchParam.acSearchItem = @" ";
     searchParam.ulPageIndex = _searchPageIndex;
     searchParam.ulExactSearch = 0;
-    searchParam.ulSeqNo = rand();
+    searchParam.ulSeqNo = rand() + 101;
     searchParam.acDepId = _dept.deptId;
     [[ManagerService contactService] searchContactWithParam:searchParam];
 }

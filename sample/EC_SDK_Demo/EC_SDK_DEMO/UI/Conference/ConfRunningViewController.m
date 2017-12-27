@@ -49,8 +49,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestChairBtn;
 @property (weak, nonatomic) IBOutlet UIButton *dataMeetingBtn;
 @property (weak, nonatomic) IBOutlet UIButton *lockConfBtn;
+@property (weak, nonatomic) IBOutlet UILabel *lockConfLabel;
 
 @property (nonatomic, assign) BOOL isMicMute;
+@property (nonatomic, assign) BOOL __block isLock;
 @property (nonatomic, strong) NSMutableArray *currentSpeakArray;
 
 
@@ -130,12 +132,44 @@
             }
         }
             break;
+        case CONF_E_MUTE_RESULT:
+        {
+            BOOL result = [resultDictionary[ECCONF_RESULT_KEY] boolValue];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(result){
+                    BOOL ismute = [resultDictionary[ECCONF_MUTE_KEY] boolValue];
+                    if(ismute){
+                        [self showMessage:@"Mute conference success."];
+                        [_muteallBtn setImage:[UIImage imageNamed:@"conf_tab_muteall_highlight"] forState:UIControlStateNormal];
+                        [_unmuteallBtn setImage:[UIImage imageNamed:@"conf_tab_cancelmuteall"] forState:UIControlStateNormal];
+                    }else{
+                        [self showMessage:@"Unmute conference success."];
+                        [_muteallBtn setImage:[UIImage imageNamed:@"conf_tab_muteall"] forState:UIControlStateNormal];
+                        [_unmuteallBtn setImage:[UIImage imageNamed:@"conf_tab_cancelmuteall_highlight"] forState:UIControlStateNormal];
+                    }
+                }
+                else{
+                    [self showMessage:@"Mute conf failed."];
+                }
+            });
+        }
+            break;
         case CONF_E_LOCK_STATUS_CHANGE:
         {
             BOOL result = [resultDictionary[ECCONF_RESULT_KEY] boolValue];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (result) {
-                    [self showMessage:@"Lock conference success."];
+                    if(_isLock == NO){
+                        [self showMessage:@"Lock conference success."];
+                        _lockConfLabel.text = @"UnlockConf";
+                        _isLock = YES;
+                    }else{
+                        [self showMessage:@"Unlock conference success."];
+                        _lockConfLabel.text = @"LockConf";
+                        _isLock = NO;
+                    }
+                    
                 }
                 else {
                     [self showMessage:@"Lock conference failed."];
@@ -300,6 +334,7 @@
     [[ManagerService dataConfService] configDataConfLocalView:[EAGLView getDataLocalView] remoteView:[EAGLView getDataRemoteView]];
     
     _isMicMute = NO;
+    _isLock = NO;
     _currentSpeakArray = [[NSMutableArray alloc]init];;
     
     [self updateBtnStatus];
@@ -331,10 +366,10 @@
             if (_currentStatus.media_type == CONF_MEDIATYPE_DATA || _currentStatus.media_type == CONF_MEDIATYPE_VIDEO_DATA) {
                 [[ManagerService dataConfService] closeDataConference];
             }
-            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
             [[ManagerService confService] confCtrlEndConference];
             [self finishConference];
-            
+            [self quitToListViewCtrl];
         }];
         
         UIAlertAction *leaveMeetingAction = [UIAlertAction actionWithTitle:@"Leave" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -346,8 +381,9 @@
             CallInfo *callInfo = [[ManagerService callService] callInfoWithConfId:_currentStatus.conf_id];
             [[ManagerService callService] closeCall:callInfo.stateInfo.callId];
             [[ManagerService confService] confCtrlLeaveConference];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
             [self finishConference];
+            [self quitToListViewCtrl];
             
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -650,15 +686,32 @@
 
 - (IBAction)muteSelf:(id)sender { //
     if (_mineConfInfo.role == CONF_ROLE_CHAIRMAN) {
-        [[ManagerService confService] confCtrlMuteAttendee:_mineConfInfo.number isMute:!_mineConfInfo.is_mute];
+        if([[ManagerService confService] confCtrlMuteAttendee:_mineConfInfo.number isMute:!_mineConfInfo.is_mute]){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(_mineConfInfo.is_mute){
+                    [self showMessage:@"Unmute self success"];
+                }else{
+                    [self showMessage:@"Mute self success"];
+                }
+            });
+        }
     }
     else {
         CallInfo *callInfo = [[ManagerService callService] callInfoWithConfId:_currentStatus.conf_id];
         if ([[ManagerService callService] muteMic:!_isMicMute callId:callInfo.stateInfo.callId]) {
             _isMicMute = !_isMicMute;
             _muteBtn.selected = _isMicMute;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(_isMicMute){
+                    [self showMessage:@"Mute self success"];
+                }else{
+                    [self showMessage:@"Unmute self success"];
+                }
+                
+            });
         }
     }
+    
 }
 
 - (IBAction)switchSpeaker:(id)sender {
