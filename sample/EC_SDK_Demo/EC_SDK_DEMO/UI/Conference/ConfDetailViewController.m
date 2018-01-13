@@ -50,7 +50,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [ManagerService confService].delegate = nil;
 }
 
 - (void)viewDidLoad
@@ -170,6 +169,6 @@
 }
 -(void)dealloc
 {
-    //[ManagerService confService].delegate = nil;
+    [ManagerService confService].delegate = nil;
 }
 @end

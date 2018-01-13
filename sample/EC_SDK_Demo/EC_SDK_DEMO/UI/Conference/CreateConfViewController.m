@@ -249,7 +249,7 @@
 
 - (void)dealloc {
     [self.selectedAttendeArray removeAllObjects];
-    
+    [ManagerService confService].delegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_itemModelsDic removeAllObjects];

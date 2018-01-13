@@ -120,7 +120,7 @@
 {
     NSDictionary *addresses = [CommonUtils getIPAddresses];
     DDLogInfo(@"all addresses: %@", addresses);
-    NSString *pppIpv4 = addresses[@"ppp0/ipv4"];
+    NSString *pppIpv4 = addresses[@"utun1/ipv4"];
     DDLogInfo(@"pppIpv4:%@",pppIpv4);
     DDLogInfo(@"current have ppp0:%d",pppIpv4.length > 0 ? YES : NO);
     return pppIpv4.length > 0 ? YES : NO;
@@ -138,7 +138,7 @@
     if (isVpnAddress)
     {
         NSDictionary *addresses = [CommonUtils getIPAddresses];
-        NSString *pppIpv4 = addresses[@"ppp0/ipv4"];
+        NSString *pppIpv4 = addresses[@"utun1/ipv4"];
         tempIP = pppIpv4;
         DDLogInfo(@"pppipv4: %@",pppIpv4);
     }

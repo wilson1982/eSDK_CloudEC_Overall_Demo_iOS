@@ -297,6 +297,8 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [ManagerService confService].delegate = nil;
+    [ManagerService dataConfService].delegate = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
