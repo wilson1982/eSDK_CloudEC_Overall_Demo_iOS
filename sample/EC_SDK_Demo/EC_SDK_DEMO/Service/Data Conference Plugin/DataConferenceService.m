@@ -2201,9 +2201,9 @@ void CalcDpi(void)
     if (0 != _localCamreaInfo.deviceId) {
         TC_VIDEO_PARAM videoParam;
         memset(&videoParam, 0, sizeof(TC_VIDEO_PARAM));
-        videoParam.xResolution = 640;
-        videoParam.yResolution = 480;
-        videoParam.nFrameRate = 15;
+        videoParam.xResolution = 704;
+        videoParam.yResolution = 576;
+        videoParam.nFrameRate = 20;
         TUP_RESULT sRes = tup_conf_video_setparam(_dataConfHandle, _localCamreaInfo.deviceId, &videoParam);
         TUP_RESULT nRet = tup_conf_video_open(_dataConfHandle, _localCamreaInfo.deviceId, true);
         DDLogInfo(@"become active local resume: setparam %d open: %d", sRes, nRet);
@@ -2281,9 +2281,9 @@ void CalcDpi(void)
 -(void)configVideoResolvingPowerWithDeviceId:(TUP_UINT32)deviceId {
     TC_VIDEO_PARAM videoParam;
     memset(&videoParam, 0, sizeof(TC_VIDEO_PARAM));
-    videoParam.xResolution = 640;
-    videoParam.yResolution = 480;
-    videoParam.nFrameRate = 15;
+    videoParam.xResolution = 704;
+    videoParam.yResolution = 576;
+    videoParam.nFrameRate = 20;
     TUP_RESULT sRes = tup_conf_video_setparam(_dataConfHandle, deviceId, &videoParam);
     if (sRes != TC_OK) {
         DDLogInfo(@"tup_conf_video_setparam failed:%d",sRes);

@@ -310,13 +310,14 @@ TUP_VOID onTUPContactNotifications(TUP_UINT32 msgid,TUP_VOID *data) {
 
     CALL_S_VIDEO_FRAMESIZE framesizeS;
     memset_s(&framesizeS, sizeof(CALL_S_VIDEO_FRAMESIZE), 0, sizeof(CALL_S_VIDEO_FRAMESIZE));
-    framesizeS.uiFramesize = VIDEO_FRAMESIZE_DEFAULT;
-    framesizeS.uiDecodeFrameSize = VIDEO_FRAMESIZE_DEFAULT;
+    framesizeS.uiFramesize = 8;
+    framesizeS.uiMinFramesize = 1;
+    framesizeS.uiDecodeFrameSize = 11;
     TUP_RESULT ret_frame_size = tup_call_set_cfg(CALL_D_CFG_VIDEO_FRAMESIZE, &framesizeS);
     
     CALL_S_VIDEO_FRAMERATE framerateS;
     memset_s(&framerateS, sizeof(framerateS), 0, sizeof(framerateS));
-    framerateS.uiFrameRate = VIDEO_FRAMERATE_DEFAULT;
+    framerateS.uiFrameRate = 25;
     framerateS.uiMinFrameRate = 10;
     TUP_RESULT ret_frame_rate = tup_call_set_cfg(CALL_D_CFG_VIDEO_FRAMERATE, &framerateS);
     
@@ -328,7 +329,7 @@ TUP_VOID onTUPContactNotifications(TUP_UINT32 msgid,TUP_VOID *data) {
     TUP_UINT32 videoDSCP = 0;//(TUP_UINT32)maaInfo.videoDSCP;;
     TUP_RESULT ret_video_dscp = tup_call_set_cfg(CALL_D_CFG_DSCP_VIDEO, &videoDSCP);
     
-    TUP_UINT32 fec = 0;
+    TUP_UINT32 fec = 1;
     TUP_RESULT ret_fec = tup_call_set_cfg(CALL_D_CFG_VIDEO_ERRORCORRECTING, &fec);
     
     TUP_UINT32 netLossRate = 100;
